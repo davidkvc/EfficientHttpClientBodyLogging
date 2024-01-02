@@ -1,5 +1,5 @@
 ﻿
-using ConsoleApp1;
+using EfficientHttpClientBodyLogging;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 
 var loggingOptions = new HttpLoggingOptions();
-loggingOptions.BodyContentTypeWhitelist.Add(new MediaTypeHeaderValue("multipart/form-data"));
+loggingOptions.BodyContentTypeAllowlist.Add(new MediaTypeHeaderValue("multipart/form-data"));
 
 using var lf = LoggerFactory.Create(b => b.AddConsole());
 
@@ -22,17 +22,18 @@ for (int i = 0; i < data.Length; i++)
 {
     data[i] = new string('a', 4000);
 }
-//msg.Content = WrapRequestContentForLogging(JsonContent.Create(new { 
-//    name = "test",
-//    count = 66,
-//    data = data,
-//}), loggingOptions, logger);
-var mpc = new MultipartFormDataContent();
-using var cv = File.OpenRead("C:\\Users\\david\\Desktop\\david_kovac_cv.pdf");
-using var cvContent = new StreamContent(cv);
-cvContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/pdf");
-mpc.Add(cvContent, "file", "file");
-msg.Content = WrapRequestContentForLogging(mpc, loggingOptions, logger);
+msg.Content = WrapRequestContentForLogging(JsonContent.Create(new
+{
+    name = "test",
+    count = 66,
+    data = data,
+}), loggingOptions, logger);
+//var mpc = new MultipartFormDataContent();
+//using var cv = File.OpenRead("C:\\Users\\david\\Desktop\\david_kovac_cv.pdf");
+//using var cvContent = new StreamContent(cv);
+//cvContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/pdf");
+//mpc.Add(cvContent, "file", "file");
+//msg.Content = WrapRequestContentForLogging(mpc, loggingOptions, logger);
 
 using var resp = await client.SendAsync(msg);
 
@@ -55,7 +56,7 @@ static HttpContent WrapRequestContentForLogging(HttpContent content, HttpLogging
         return content;
     }
 
-    foreach (var supportedContentType in loggingOptions.BodyContentTypeWhitelist)
+    foreach (var supportedContentType in loggingOptions.BodyContentTypeAllowlist)
     {
         if (supportedContentType.MatchesMediaType(mediaType.MediaType))
         {
@@ -83,7 +84,7 @@ static async Task<Stream> PrepareResponseReadStream(HttpContent content, HttpLog
         return responseStream;
     }
 
-    foreach (var supportedContentType in loggingOptions.BodyContentTypeWhitelist)
+    foreach (var supportedContentType in loggingOptions.BodyContentTypeAllowlist)
     {
         if (supportedContentType.MatchesMediaType(mediaType.MediaType))
         {

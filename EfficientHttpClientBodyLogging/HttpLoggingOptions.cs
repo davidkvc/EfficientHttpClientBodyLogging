@@ -9,7 +9,7 @@ namespace EfficientHttpClientBodyLogging;
 
 public class HttpLoggingOptions
 {
-    public List<MediaTypeHeaderValue> BodyContentTypeWhitelist { get; } = new List<MediaTypeHeaderValue>
+    public List<MediaTypeHeaderValue> BodyContentTypeAllowlist { get; } = new List<MediaTypeHeaderValue>
     {
         new("application/json") { Encoding = Encoding.UTF8 },
         new("application/*+json") { Encoding = Encoding.UTF8 },
