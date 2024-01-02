@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Buffers;
 using System.Diagnostics;
-using System.Net.Http.Headers;
 using System.Text;
 
 namespace EfficientHttpClientBodyLogging;
@@ -11,7 +10,6 @@ internal class LoggingStream : Stream, IBufferWriter<byte>
     private const int MinimumBufferSize = 4096;
 
     private readonly Stream _target;
-    private readonly MediaTypeHeaderValue? _contentType;
     private readonly ILogger _logger;
     private readonly int _limit;
     private readonly Content _content;
