@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientHttpClientBodyLogging.Example", "EfficientHttpClientBodyLogging.Example\EfficientHttpClientBodyLogging.Example.csproj", "{F4174936-5DA7-470B-8FA1-F51315610B05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientHttpClientBodyLogging.Tests", "EfficientHttpClientBodyLogging.Tests\EfficientHttpClientBodyLogging.Tests.csproj", "{4864B03A-D369-48DE-982C-66EEB8509299}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{F4174936-5DA7-470B-8FA1-F51315610B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4174936-5DA7-470B-8FA1-F51315610B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4174936-5DA7-470B-8FA1-F51315610B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4864B03A-D369-48DE-982C-66EEB8509299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4864B03A-D369-48DE-982C-66EEB8509299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4864B03A-D369-48DE-982C-66EEB8509299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4864B03A-D369-48DE-982C-66EEB8509299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
