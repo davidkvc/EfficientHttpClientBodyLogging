@@ -22,12 +22,15 @@ for (int i = 0; i < data.Length; i++)
 {
     data[i] = new string('a', 4000);
 }
-msg.Content = HttpContentWrapper.WrapRequestContentForLogging(JsonContent.Create(new
+
+var originalRequestContent = JsonContent.Create(new
 {
     name = "test",
     count = 66,
     data = data,
-}), loggingOptions, logger);
+});
+
+msg.Content = HttpContentWrapper.WrapRequestContentForLogging(originalRequestContent, loggingOptions, logger);
 //var mpc = new MultipartFormDataContent();
 //using var cv = File.OpenRead("C:\\Users\\david\\Desktop\\david_kovac_cv.pdf");
 //using var cvContent = new StreamContent(cv);
