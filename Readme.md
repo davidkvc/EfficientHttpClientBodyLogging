@@ -21,6 +21,8 @@ and eventually converts that to a string efficiently. Only then we log the captu
 
 ## Benchmarks
 
+WIP
+
 Logging disabled:
 
 | Method         | Mean        | Error    | StdDev   | Gen0   | Gen1   | Allocated |
