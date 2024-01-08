@@ -13,6 +13,10 @@ env:
   DOTNET_NOLOGO: true
   NuGetDirectory: ${{ github.workspace}}/nuget
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,7 +42,9 @@ jobs:
         path: TestResults
       if: ${{ always() }}
 
-    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+    - run: |
+        $version = "${{ github.ref_name }}".TrimStart("v")
+        dotnet pack --configuration Release --output ${{ env.NuGetDirectory }} -p:PackageVersion=$version
     - uses: actions/upload-artifact@v3
       with:
         name: nuget
