@@ -14,13 +14,13 @@ namespace EfficientHttpClientBodyLogging;
 /// </summary>
 public class HttpBodyLoggingHandler : DelegatingHandler
 {
-    private readonly HttpLoggingOptions _options;
+    private readonly HttpClientBodyLoggingOptions _options;
     private readonly ILogger<HttpBodyLoggingHandler> _logger;
 
     /// <summary>
     /// Creates HttpBodyLoggingHandler with provided options and logger
     /// </summary>
-    public HttpBodyLoggingHandler(IOptions<HttpLoggingOptions> options, ILogger<HttpBodyLoggingHandler> logger)
+    public HttpBodyLoggingHandler(IOptions<HttpClientBodyLoggingOptions> options, ILogger<HttpBodyLoggingHandler> logger)
     {
         _options = options.Value;
         _logger = logger;

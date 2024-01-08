@@ -10,7 +10,7 @@ namespace EfficientHttpClientBodyLogging;
 
 public static class HttpContentWrapper
 {
-    public static HttpContent WrapRequestContentForLogging(HttpContent content, HttpLoggingOptions loggingOptions, ILogger logger)
+    public static HttpContent WrapRequestContentForLogging(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger)
     {
         if (loggingOptions.RequestBodyLogLimit == 0)
         {
@@ -43,7 +43,7 @@ public static class HttpContentWrapper
         return content;
     }
 
-    public static HttpContent WrapResponseContentForLogging(HttpContent content, HttpLoggingOptions loggingOptions, ILogger logger)
+    public static HttpContent WrapResponseContentForLogging(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger)
     {
         if (loggingOptions.ResponseBodyLogLimit == 0)
         {
@@ -76,7 +76,7 @@ public static class HttpContentWrapper
         return content;
     }
 
-    public static async Task<Stream> PrepareResponseReadStream(HttpContent content, HttpLoggingOptions loggingOptions, ILogger logger)
+    public static async Task<Stream> PrepareResponseReadStream(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger)
     {
         var responseStream = await content.ReadAsStreamAsync();
 

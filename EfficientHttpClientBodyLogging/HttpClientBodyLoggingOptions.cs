@@ -3,8 +3,15 @@ using System.Text;
 
 namespace EfficientHttpClientBodyLogging;
 
-public class HttpLoggingOptions
+/// <summary>
+/// Defines options for logging of request and response bodies
+/// </summary>
+public class HttpClientBodyLoggingOptions
 {
+    /// <summary>
+    /// Request/Response bodies with these content types will be logged.
+    /// <para>Wildcard media types are also supported, e.g. text/* or application/*+json</para>
+    /// </summary>
     public List<MediaTypeHeaderValue> BodyContentTypeAllowlist { get; } = new List<MediaTypeHeaderValue>
     {
         new("application/json") { Encoding = Encoding.UTF8 },

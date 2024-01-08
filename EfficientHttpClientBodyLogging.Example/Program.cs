@@ -12,7 +12,7 @@ var services = new ServiceCollection();
 services.AddLogging(b => b.AddJsonConsole());
 services.AddHttpClient("example")
     .AddHttpMessageHandler<HttpBodyLoggingHandler>();
-services.Configure<HttpLoggingOptions>(opts =>
+services.Configure<HttpClientBodyLoggingOptions>(opts =>
 {
     opts.BodyContentTypeAllowlist.Add(new MediaTypeHeaderValue("multipart/form-data"));
 });
