@@ -29,7 +29,37 @@ public static class HttpContentWrapper
             if (supportedContentType.MatchesMediaType(mediaType.MediaType))
             {
                 var encoding = mediaType.Encoding ?? supportedContentType.Encoding ?? Encoding.UTF8;
-                return new LoggingContent(content, encoding, loggingOptions.RequestBodyLogLimit, logger);
+                var loggingContent = new RequestLoggingContent(content, encoding, loggingOptions.RequestBodyLogLimit, logger);
+                //TODO: copy headers
+                return loggingContent;
+            }
+        }
+
+        return content;
+    }
+
+    public static HttpContent WrapResponseContentForLogging(HttpContent content, HttpLoggingOptions loggingOptions, ILogger logger)
+    {
+        var resContentType = content.Headers.ContentType;
+
+        if (resContentType == null)
+        {
+            return content;
+        }
+
+        if (!MediaTypeHeaderValue.TryParse(resContentType.ToString(), out var mediaType))
+        {
+            return content;
+        }
+
+        foreach (var supportedContentType in loggingOptions.BodyContentTypeAllowlist)
+        {
+            if (supportedContentType.MatchesMediaType(mediaType.MediaType))
+            {
+                var encoding = mediaType.Encoding ?? supportedContentType.Encoding ?? Encoding.UTF8;
+                var loggingContent = new ResponseLoggingContent(content, encoding, loggingOptions.ResponseBodyLogLimit, logger);
+                //TODO: copy headers
+                return loggingContent;
             }
         }
 

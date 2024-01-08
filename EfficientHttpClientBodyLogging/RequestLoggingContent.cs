@@ -4,14 +4,14 @@ using System.Text;
 
 namespace EfficientHttpClientBodyLogging;
 
-internal class LoggingContent : HttpContent
+internal class RequestLoggingContent : HttpContent
 {
     private readonly HttpContent _inner;
     private readonly Encoding _encoding;
     private readonly int _limit;
     private readonly ILogger _logger;
 
-    public LoggingContent(HttpContent inner, Encoding encoding, int limit, ILogger logger)
+    public RequestLoggingContent(HttpContent inner, Encoding encoding, int limit, ILogger logger)
     {
         _inner = inner;
         _encoding = encoding;
@@ -32,5 +32,14 @@ internal class LoggingContent : HttpContent
     {
         length = 0;
         return false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _inner.Dispose();
+        }
+        base.Dispose(disposing);
     }
 }
