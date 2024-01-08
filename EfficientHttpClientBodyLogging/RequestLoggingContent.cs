@@ -21,7 +21,8 @@ internal class RequestLoggingContent : HttpContent
 
     protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context)
     {
-        await using var loggingStream = new LoggingStream(stream, _encoding, _limit, LoggingStream.Content.RequestBody, _logger);
+        await using var loggingStream = new LoggingStream(stream, _encoding, _limit, 
+            LoggingStream.Content.RequestBody, _logger);
 
         await _inner.CopyToAsync(loggingStream, context);
 

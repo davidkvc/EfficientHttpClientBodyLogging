@@ -28,29 +28,21 @@ internal class ResponseLoggingContent : HttpContent
         _logger = logger;
     }
 
+    protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context)
+    {
+        using var contentStream = await _inner.ReadAsStreamAsync();
+        using var loggingStream = new LoggingStream(contentStream, _encoding, _limit,
+            LoggingStream.Content.ResponseBody, _logger);
+
+        await loggingStream.CopyToAsync(stream);
+
+        loggingStream.Log();
+    }
 
     protected override bool TryComputeLength(out long length)
     {
         length = 0;
         return false;
-    }
-
-    private async Task<LoggingStream> CreateStream(CancellationToken cancellationToken = default)
-    {
-        return new LoggingStream(await _inner.ReadAsStreamAsync(cancellationToken),
-            _encoding,
-            _limit,
-            LoggingStream.Content.ResponseBody,
-            _logger);
-    }
-
-    protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context)
-    {
-        using var loggingStream = await CreateStream();
-
-        await loggingStream.CopyToAsync(stream);
-
-        loggingStream.Log();
     }
 
     protected override void Dispose(bool disposing)
