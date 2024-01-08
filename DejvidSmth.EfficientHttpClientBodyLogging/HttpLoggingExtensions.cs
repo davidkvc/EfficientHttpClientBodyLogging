@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace EfficientHttpClientBodyLogging;
+namespace DejvidSmth.EfficientHttpClientBodyLogging;
 
 internal static partial class HttpLoggingExtensions
 {

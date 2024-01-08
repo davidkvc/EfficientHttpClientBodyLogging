@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace EfficientHttpClientBodyLogging;
+namespace DejvidSmth.EfficientHttpClientBodyLogging;
 
 internal sealed class BufferSegment : ReadOnlySequenceSegment<byte>
 {

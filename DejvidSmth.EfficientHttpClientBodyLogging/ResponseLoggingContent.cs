@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EfficientHttpClientBodyLogging;
+namespace DejvidSmth.EfficientHttpClientBodyLogging;
 
 //TODO: response body is going to be logged once response body is read which
 //might happen later than request processing itself. So the log might not contain

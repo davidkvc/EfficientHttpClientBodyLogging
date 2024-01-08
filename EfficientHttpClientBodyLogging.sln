@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging", "EfficientHttpClientBodyLogging\EfficientHttpClientBodyLogging.csproj", "{C23FFFB1-CC4A-49F0-A1B3-738AF5D9AB25}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08F6A4E4-65D7-4311-9F27-D1EA15F96614}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
@@ -12,9 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging.Benchmarks", "EfficientHttpClientBodyLogging.Benchmarks\EfficientHttpClientBodyLogging.Benchmarks.csproj", "{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientHttpClientBodyLogging.Example", "EfficientHttpClientBodyLogging.Example\EfficientHttpClientBodyLogging.Example.csproj", "{F4174936-5DA7-470B-8FA1-F51315610B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging.Example", "EfficientHttpClientBodyLogging.Example\EfficientHttpClientBodyLogging.Example.csproj", "{F4174936-5DA7-470B-8FA1-F51315610B05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientHttpClientBodyLogging.Tests", "EfficientHttpClientBodyLogging.Tests\EfficientHttpClientBodyLogging.Tests.csproj", "{4864B03A-D369-48DE-982C-66EEB8509299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging.Tests", "EfficientHttpClientBodyLogging.Tests\EfficientHttpClientBodyLogging.Tests.csproj", "{4864B03A-D369-48DE-982C-66EEB8509299}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DejvidSmth.EfficientHttpClientBodyLogging", "DejvidSmth.EfficientHttpClientBodyLogging\DejvidSmth.EfficientHttpClientBodyLogging.csproj", "{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{BC618917-781F-48E0-9894-C5040AE3853A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C23FFFB1-CC4A-49F0-A1B3-738AF5D9AB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C23FFFB1-CC4A-49F0-A1B3-738AF5D9AB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C23FFFB1-CC4A-49F0-A1B3-738AF5D9AB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C23FFFB1-CC4A-49F0-A1B3-738AF5D9AB25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,9 +39,16 @@ Global
 		{4864B03A-D369-48DE-982C-66EEB8509299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4864B03A-D369-48DE-982C-66EEB8509299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4864B03A-D369-48DE-982C-66EEB8509299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC618917-781F-48E0-9894-C5040AE3853A} = {08F6A4E4-65D7-4311-9F27-D1EA15F96614}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {280CFF70-7B55-4E44-949D-3B4472B98B3C}

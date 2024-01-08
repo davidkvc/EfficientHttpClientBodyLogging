@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientHttpClientBodyLogging;
+namespace DejvidSmth.EfficientHttpClientBodyLogging;
 
 internal static class HttpContentWrapper
 {

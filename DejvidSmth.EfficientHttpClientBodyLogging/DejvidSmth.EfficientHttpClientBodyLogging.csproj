@@ -10,7 +10,15 @@
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/dejvid-smth/EfficientHttpClientBodyLogging</RepositoryUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-	</PropertyGroup>
+		<DebugType>embedded</DebugType>
+		<Authors>David Kovac</Authors>
+		<Description>TODO</Description>
+		<PackageTags>HttpClient, log, logging</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+		<PackageVersion>0.1.0-pre.1</PackageVersion>
+	
+</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
@@ -20,6 +28,11 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Add a README.md next to the csproj -->
+		<None Include="../Readme.md" Pack="true" PackagePath=""/>
 	</ItemGroup>
 
 	<ItemGroup>

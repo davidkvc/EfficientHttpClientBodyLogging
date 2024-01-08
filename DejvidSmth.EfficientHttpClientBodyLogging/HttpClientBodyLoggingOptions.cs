@@ -1,7 +1,7 @@
 ﻿using Microsoft.Net.Http.Headers;
 using System.Text;
 
-namespace EfficientHttpClientBodyLogging;
+namespace DejvidSmth.EfficientHttpClientBodyLogging;
 
 /// <summary>
 /// Defines options for logging of request and response bodies
