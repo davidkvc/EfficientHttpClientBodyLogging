@@ -23,12 +23,21 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.x
+
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --logger trx --results-directory "TestResults"
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: TestResults
+        path: TestResults
+        if: ${{ always() }}
+
     - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
     - uses: actions/upload-artifact@v3
       with:
