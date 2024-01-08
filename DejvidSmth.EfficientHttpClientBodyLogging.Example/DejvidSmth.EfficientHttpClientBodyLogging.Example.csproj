@@ -5,6 +5,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -14,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\DejvidSmth.EfficientHttpClientBodyLogging\DejvidSmth.EfficientHttpClientBodyLogging.csproj" />
+		<ProjectReference Include="..\DejvidSmth.EfficientHttpClientBodyLogging\DejvidSmth.EfficientHttpClientBodyLogging.csproj" />
 	</ItemGroup>
 
 </Project>
