@@ -8,12 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging.Benchmarks", "EfficientHttpClientBodyLogging.Benchmarks\EfficientHttpClientBodyLogging.Benchmarks.csproj", "{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging.Example", "EfficientHttpClientBodyLogging.Example\EfficientHttpClientBodyLogging.Example.csproj", "{F4174936-5DA7-470B-8FA1-F51315610B05}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientHttpClientBodyLogging.Tests", "EfficientHttpClientBodyLogging.Tests\EfficientHttpClientBodyLogging.Tests.csproj", "{4864B03A-D369-48DE-982C-66EEB8509299}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DejvidSmth.EfficientHttpClientBodyLogging", "DejvidSmth.EfficientHttpClientBodyLogging\DejvidSmth.EfficientHttpClientBodyLogging.csproj", "{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{BC618917-781F-48E0-9894-C5040AE3853A}"
@@ -21,28 +15,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DejvidSmth.EfficientHttpClientBodyLogging.Benchmarks", "DejvidSmth.EfficientHttpClientBodyLogging.Benchmarks\DejvidSmth.EfficientHttpClientBodyLogging.Benchmarks.csproj", "{94071F84-FBA0-4613-A657-6CAFFB18FC5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DejvidSmth.EfficientHttpClientBodyLogging.Example", "DejvidSmth.EfficientHttpClientBodyLogging.Example\DejvidSmth.EfficientHttpClientBodyLogging.Example.csproj", "{18DB3A5E-88E9-44CD-8296-A136D3C84538}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DejvidSmth.EfficientHttpClientBodyLogging.Tests", "DejvidSmth.EfficientHttpClientBodyLogging.Tests\DejvidSmth.EfficientHttpClientBodyLogging.Tests.csproj", "{A7AC4DDF-85BB-4480-A804-E6A89F8857FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C748A2A5-D1FC-4ED7-A038-B14C1DF2877C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4174936-5DA7-470B-8FA1-F51315610B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4174936-5DA7-470B-8FA1-F51315610B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4174936-5DA7-470B-8FA1-F51315610B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4174936-5DA7-470B-8FA1-F51315610B05}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4864B03A-D369-48DE-982C-66EEB8509299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4864B03A-D369-48DE-982C-66EEB8509299}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4864B03A-D369-48DE-982C-66EEB8509299}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4864B03A-D369-48DE-982C-66EEB8509299}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F96F0B9-3E55-4C2F-94E8-F0755D7C07AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94071F84-FBA0-4613-A657-6CAFFB18FC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94071F84-FBA0-4613-A657-6CAFFB18FC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94071F84-FBA0-4613-A657-6CAFFB18FC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94071F84-FBA0-4613-A657-6CAFFB18FC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DB3A5E-88E9-44CD-8296-A136D3C84538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18DB3A5E-88E9-44CD-8296-A136D3C84538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18DB3A5E-88E9-44CD-8296-A136D3C84538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18DB3A5E-88E9-44CD-8296-A136D3C84538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7AC4DDF-85BB-4480-A804-E6A89F8857FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7AC4DDF-85BB-4480-A804-E6A89F8857FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7AC4DDF-85BB-4480-A804-E6A89F8857FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7AC4DDF-85BB-4480-A804-E6A89F8857FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
