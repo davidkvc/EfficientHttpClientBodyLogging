@@ -36,7 +36,7 @@ jobs:
       with:
         name: TestResults
         path: TestResults
-        if: ${{ always() }}
+      if: ${{ always() }}
 
     - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
     - uses: actions/upload-artifact@v3
