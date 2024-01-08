@@ -8,6 +8,11 @@ on:
   release:
     types: [ published ]
 
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
@@ -37,7 +42,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --results-directory "TestResults"
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
-      if: ${{ always() }}
+      if: always()
       with:
         name: TestResults
         path: TestResults
