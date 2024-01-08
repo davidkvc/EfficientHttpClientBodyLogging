@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EfficientHttpClientBodyLogging;
 
-public static class HttpContentWrapper
+internal static class HttpContentWrapper
 {
     public static HttpContent WrapRequestContentForLogging(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger)
     {
@@ -35,7 +35,7 @@ public static class HttpContentWrapper
             {
                 var encoding = mediaType.Encoding ?? supportedContentType.Encoding ?? Encoding.UTF8;
                 var loggingContent = new RequestLoggingContent(content, encoding, loggingOptions.RequestBodyLogLimit, logger);
-                //TODO: copy headers
+                CopyHeaders(content, loggingContent);
                 return loggingContent;
             }
         }
@@ -68,7 +68,7 @@ public static class HttpContentWrapper
             {
                 var encoding = mediaType.Encoding ?? supportedContentType.Encoding ?? Encoding.UTF8;
                 var loggingContent = new ResponseLoggingContent(content, encoding, loggingOptions.ResponseBodyLogLimit, logger);
-                //TODO: copy headers
+                CopyHeaders(content, loggingContent);
                 return loggingContent;
             }
         }
@@ -76,32 +76,8 @@ public static class HttpContentWrapper
         return content;
     }
 
-    public static async Task<Stream> PrepareResponseReadStream(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger)
+    private static void CopyHeaders(HttpContent source, HttpContent destination)
     {
-        var responseStream = await content.ReadAsStreamAsync();
-
-        var respContentType = content.Headers.ContentType;
-
-        if (respContentType == null)
-        {
-            return responseStream;
-        }
-
-        if (!MediaTypeHeaderValue.TryParse(respContentType.ToString(), out var mediaType))
-        {
-            return responseStream;
-        }
-
-        foreach (var supportedContentType in loggingOptions.BodyContentTypeAllowlist)
-        {
-            if (supportedContentType.MatchesMediaType(mediaType.MediaType))
-            {
-                var encoding = mediaType.Encoding ?? supportedContentType.Encoding ?? Encoding.UTF8;
-                var responseLoggingStream = new LoggingStream(responseStream, encoding, loggingOptions.ResponseBodyLogLimit, LoggingStream.Content.ResponseBody, logger);
-                return responseLoggingStream;
-            }
-        }
-
-        return responseStream;
+        //TODO: implement this
     }
 }
