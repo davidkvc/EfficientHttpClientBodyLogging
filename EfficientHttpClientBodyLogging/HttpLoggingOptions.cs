@@ -16,11 +16,13 @@ public class HttpLoggingOptions
 
     /// <summary>
     /// Maximum request body size to log (in bytes). Defaults to 32 KB.
+    /// <para>Set to 0 to disable request body logging</para>
     /// </summary>
     public int RequestBodyLogLimit { get; set; } = 32 * 1024;
 
     /// <summary>
     /// Maximum response body size to log (in bytes). Defaults to 32 KB.
+    /// <para>Set to 0 to disable response body logging</para>
     /// </summary>
     public int ResponseBodyLogLimit { get; set; } = 32 * 1024;
 }

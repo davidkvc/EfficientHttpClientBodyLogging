@@ -12,6 +12,11 @@ public static class HttpContentWrapper
 {
     public static HttpContent WrapRequestContentForLogging(HttpContent content, HttpLoggingOptions loggingOptions, ILogger logger)
     {
+        if (loggingOptions.RequestBodyLogLimit == 0)
+        {
+            return content;
+        }
+
         var reqContentType = content.Headers.ContentType;
 
         if (reqContentType == null)
@@ -40,6 +45,11 @@ public static class HttpContentWrapper
 
     public static HttpContent WrapResponseContentForLogging(HttpContent content, HttpLoggingOptions loggingOptions, ILogger logger)
     {
+        if (loggingOptions.ResponseBodyLogLimit == 0)
+        {
+            return content;
+        }
+
         var resContentType = content.Headers.ContentType;
 
         if (resContentType == null)
