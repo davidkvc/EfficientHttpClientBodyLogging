@@ -46,6 +46,7 @@ jobs:
       with:
         name: TestResults
         path: TestResults
+    # TODO: also consider using https://github.com/EnricoMi/publish-unit-test-result-action
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
