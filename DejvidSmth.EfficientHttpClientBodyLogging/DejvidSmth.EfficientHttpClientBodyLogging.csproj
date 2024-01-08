@@ -16,7 +16,6 @@
 		<PackageTags>HttpClient, log, logging</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>Readme.md</PackageReadmeFile>
-		<PackageVersion>0.1.0-pre.1</PackageVersion>
 	
 </PropertyGroup>
 
