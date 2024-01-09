@@ -78,6 +78,9 @@ internal static class HttpContentWrapper
 
     private static void CopyHeaders(HttpContent source, HttpContent destination)
     {
-        //TODO: implement this
+        foreach (var header in source.Headers)
+        {
+            destination.Headers.TryAddWithoutValidation(header.Key, header.Value);
+        }
     }
 }

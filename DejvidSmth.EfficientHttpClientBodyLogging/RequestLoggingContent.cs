@@ -29,6 +29,16 @@ internal class RequestLoggingContent : HttpContent
         loggingStream.Log();
     }
 
+    protected override void SerializeToStream(Stream stream, TransportContext? context, CancellationToken cancellationToken)
+    {
+        using var loggingStream = new LoggingStream(stream, _encoding, _limit,
+            LoggingStream.Content.RequestBody, _logger);
+
+        _inner.CopyTo(loggingStream, context, cancellationToken);
+
+        loggingStream.Log();
+    }
+
     protected override bool TryComputeLength(out long length)
     {
         length = 0;

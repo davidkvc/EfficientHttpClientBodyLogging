@@ -1,7 +1,9 @@
 using DejvidSmth.EfficientHttpClientBodyLogging;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RichardSzalay.MockHttp;
+using System.Net;
 using System.Text;
 
 namespace EfficientHttpClientBodyLogging.Tests;
@@ -67,40 +69,140 @@ public partial class LoggingTests
     }
 
     [Fact]
-    public void Logging_doesnt_break_when_sending_null_content()
+    public async Task Logging_doesnt_break_when_sending_or_receiving_null_content()
     {
+        var logger = new TestLogger();
 
+        var options = new HttpClientBodyLoggingOptions();
+
+        var mockHttp = new MockHttpMessageHandler();
+        mockHttp.When(HttpMethod.Get, "http://logging-example/")
+            .Respond(_ => new HttpResponseMessage(HttpStatusCode.OK) { Content = null });
+        using var client = new HttpClient(new HttpBodyLoggingHandler(Options.Create(options), logger)
+        {
+            InnerHandler = mockHttp,
+        });
+
+        using var msg = new HttpRequestMessage(HttpMethod.Get, "http://logging-example/");
+        msg.Content = null;
+
+        using var resp = await client.SendAsync(msg);
+        resp.EnsureSuccessStatusCode();
     }
 
     [Fact]
-    public void Logging_doesnt_break_when_sending_empty_content()
+    public async Task Logging_doesnt_break_when_sending_or_receiving_empty_content()
     {
+        var logger = new TestLogger();
 
+        var options = new HttpClientBodyLoggingOptions();
+
+        var mockHttp = new MockHttpMessageHandler();
+        mockHttp.When(HttpMethod.Get, "http://logging-example/")
+            .Respond(_ => new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(new byte[0]) });
+        using var client = new HttpClient(new HttpBodyLoggingHandler(Options.Create(options), logger)
+        {
+            InnerHandler = mockHttp,
+        });
+
+        using var msg = new HttpRequestMessage(HttpMethod.Get, "http://logging-example/");
+        msg.Content = new ByteArrayContent(new byte[0]);
+
+        using var resp = await client.SendAsync(msg);
+        resp.EnsureSuccessStatusCode();
     }
 
     [Fact]
-    public void Logging_doesnt_break_when_receiving_empty_content()
+    public async Task Request_logging_for_all_requests_can_be_disabled()
     {
+        var logger = new TestLogger();
 
+        await Execute(logger,
+            "request",
+            "response",
+            opts =>
+            {
+                opts.RequestBodyLogLimit = 0;
+            });
+
+        logger.Messages.Should().BeEquivalentTo($"ResponseBody: response");
     }
 
     [Fact]
-    public void Request_logging_for_all_requests_can_be_disabled()
+    public async Task Response_logging_for_all_requests_can_be_disabled()
     {
+        var logger = new TestLogger();
 
-    }
+        await Execute(logger,
+            "request",
+            "response",
+            opts =>
+            {
+                opts.ResponseBodyLogLimit = 0;
+            });
 
-    [Fact]
-    public void Response_logging_for_all_requests_can_be_disabled()
-    {
-
+        logger.Messages.Should().BeEquivalentTo($"RequestBody: request");
     }
 
     //TODO: verify disabling certain content types (related to above tests)
 
-    //TODO: verify that both sync and async send works
+    [Fact]
+    public void Sync_requests_can_be_logged()
+    {
+        //TODO: MockHttpMessageHandler uses SendAsync handler even for sync requests
+        // - only response body is read using (sync)Send
+        var logger = new TestLogger();
+        var requestBody = "request";
+        var responseBody = "response";
+
+        var options = new HttpClientBodyLoggingOptions();
+
+        var mockHttp = new MockHttpMessageHandler();
+        mockHttp.When(HttpMethod.Post, "http://logging-example/")
+            .WithContent(requestBody) //we need to check the content to force mock handler to actually read it
+            .Respond("text/plain", responseBody);
+        using var client = new HttpClient(new HttpBodyLoggingHandler(Options.Create(options), logger)
+        {
+            InnerHandler = mockHttp,
+        });
+
+        using var msg = new HttpRequestMessage(HttpMethod.Post, "http://logging-example/");
+        msg.Content = new StringContent(requestBody, Encoding.UTF8, "text/plain");
+
+        using var resp = client.Send(msg);
+        resp.EnsureSuccessStatusCode();
+    }
+
     //TODO: verify more content types, not just JSON
-    //TODO: verify that headers are properly set
+    
+    [Fact]
+    public async Task Headers_are_preserved_when_logging_is_enabled()
+    {
+        var logger = new TestLogger();
+
+        var requestBody = "request";
+        var responseBody = "response";
+
+        var options = new HttpClientBodyLoggingOptions();
+
+        var mockHttp = new MockHttpMessageHandler();
+        mockHttp.When(HttpMethod.Post, "http://logging-example/")
+            .WithContent(requestBody) //we need to check the content to force mock handler to actually read it
+            .WithHeaders("Content-Type", "text/plain; charset=utf-8")
+            .WithHeaders("X-Example", "example")
+            .Respond("text/plain", responseBody);
+        using var client = new HttpClient(new HttpBodyLoggingHandler(Options.Create(options), logger)
+        {
+            InnerHandler = mockHttp,
+        });
+
+        using var msg = new HttpRequestMessage(HttpMethod.Post, "http://logging-example/");
+        msg.Content = new StringContent(requestBody, Encoding.UTF8, "text/plain");
+        msg.Content.Headers.Add("X-Example", "example");
+
+        using var resp = await client.SendAsync(msg);
+        resp.EnsureSuccessStatusCode();
+    }
 
     private async Task Execute(TestLogger logger, string requestBody, string responseBody, Action<HttpClientBodyLoggingOptions>? configureOptions = null)
     {
@@ -119,7 +221,7 @@ public partial class LoggingTests
         using var msg = new HttpRequestMessage(HttpMethod.Post, "http://logging-example/");
         msg.Content = new StringContent(requestBody, Encoding.UTF8, "text/plain");
 
-        var resp = await client.SendAsync(msg);
+        using var resp = await client.SendAsync(msg);
         resp.EnsureSuccessStatusCode();
     }
 }
