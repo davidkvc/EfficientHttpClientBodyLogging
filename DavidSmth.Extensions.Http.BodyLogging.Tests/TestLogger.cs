@@ -1,7 +1,7 @@
-﻿using DejvidSmth.EfficientHttpClientBodyLogging;
+﻿using DavidSmth.Extensions.Http.BodyLogging;
 using Microsoft.Extensions.Logging;
 
-namespace EfficientHttpClientBodyLogging.Tests;
+namespace DavidSmth.Extensions.Http.BodyLogging.Tests;
 
 public partial class LoggingTests
 {

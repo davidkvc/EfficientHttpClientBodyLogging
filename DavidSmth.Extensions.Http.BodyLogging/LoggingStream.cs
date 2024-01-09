@@ -3,7 +3,7 @@ using System.Buffers;
 using System.Diagnostics;
 using System.Text;
 
-namespace DejvidSmth.EfficientHttpClientBodyLogging;
+namespace DavidSmth.Extensions.Http.BodyLogging;
 
 internal class LoggingStream : Stream, IBufferWriter<byte>
 {

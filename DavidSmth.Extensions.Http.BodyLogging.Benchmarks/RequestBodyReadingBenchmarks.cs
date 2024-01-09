@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DejvidSmth.EfficientHttpClientBodyLogging.Benchmarks;
+namespace DavidSmth.Extensions.Http.BodyLogging.Benchmarks;
 
 [MemoryDiagnoser]
 public class RequestBodyReadingBenchmarks

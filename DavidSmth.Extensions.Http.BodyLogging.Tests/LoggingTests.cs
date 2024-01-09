@@ -1,4 +1,3 @@
-using DejvidSmth.EfficientHttpClientBodyLogging;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -6,7 +5,7 @@ using RichardSzalay.MockHttp;
 using System.Net;
 using System.Text;
 
-namespace EfficientHttpClientBodyLogging.Tests;
+namespace DavidSmth.Extensions.Http.BodyLogging.Tests;
 
 public partial class LoggingTests
 {

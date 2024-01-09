@@ -1,7 +1,7 @@
 ﻿
 using BenchmarkDotNet.Running;
-using DejvidSmth.EfficientHttpClientBodyLogging;
-using DejvidSmth.EfficientHttpClientBodyLogging.Benchmarks;
+using DavidSmth.Extensions.Http.BodyLogging;
+using DavidSmth.Extensions.Http.BodyLogging.Benchmarks;
 using Microsoft.Extensions.Logging.Abstractions;
 
 var data = new byte[10000];
