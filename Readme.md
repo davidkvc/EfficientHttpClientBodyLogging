@@ -10,6 +10,20 @@ This is an example of **memory-efficient** implementation of req/res body loggin
 This is heavily inspired by existing implementation of req/res body logging used in
 `Microsoft.AspNetCore.HttpLogging`.
 
+## Usage
+
+```csharp
+ServiceCollection services = ...;
+
+services.AddHttpClient("example")
+    .AddHttpMessageHandler<HttpBodyLoggingHandler>();
+services.Configure<HttpClientBodyLoggingOptions>(opts =>
+{
+    opts.BodyContentTypeAllowlist.Add(new MediaTypeHeaderValue("multipart/form-data"));
+});
+services.AddTransient<HttpBodyLoggingHandler>();
+```
+
 ## Implementation details
 
 Compared to other examples on the internet this implementation doesn't try to read request or response
