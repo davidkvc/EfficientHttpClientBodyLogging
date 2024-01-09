@@ -1,5 +1,7 @@
 # Efficient Request/Response body logging with C#'s HttpClient
 
+![NuGet Version](https://img.shields.io/nuget/v/DavidSmth.Extensions.Http.BodyLogging?style=flat-square&logo=nuget&label=DavidSmth.Extensions.Http.BodyLogging&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FDavidSmth.Extensions.Http.BodyLogging)
+
 This is an example of **memory-efficient** implementation of req/res body logging for C#'s HttpClient.
 
 * Configure max size of req/resp body that will be read as a string and logged
