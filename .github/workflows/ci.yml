@@ -88,12 +88,10 @@ jobs:
             "/d:sonar.coverage.exclusions=DavidSmth.Extensions.Http.BodyLogging.Benchmarks/**/*,DavidSmth.Extensions.Http.BodyLogging.Example/**/*"
         
         dotnet build --no-restore --no-incremental
-        dotnet-coverage collect --settings CodeCoverage.runsettings -f xml -o "coverage.xml" "dotnet test --no-build"
+        dotnet-coverage collect --settings CodeCoverage.runsettings -f xml -o "coverage.xml" "dotnet test --no-build --logger 'trx;LogFileName=test-results.trx' --results-directory TestResults"
         
         .sonarscanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-
-    - name: Test
-      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --results-directory "TestResults"
+        
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       if: always()
