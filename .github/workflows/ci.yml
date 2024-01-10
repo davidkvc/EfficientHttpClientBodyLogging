@@ -47,7 +47,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} /p:AssemblyFileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
+      run: dotnet build --no-restore
 
     - name: Test
       run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --results-directory "TestResults"
@@ -69,7 +69,7 @@ jobs:
 
     - run: |
         $version = "${{ github.ref_name }}".TrimStart("v")
-        dotnet pack --configuration Release --output ${{ env.NuGetDirectory }} -p:PackageVersion=${{ steps.gitversion.outputs.semVer }} /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} /p:AssemblyFileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
+        dotnet pack --configuration Release --output ${{ env.NuGetDirectory }} -p:PackageVersion=${{ steps.gitversion.outputs.semVer }} -p:Version=${{ steps.gitversion.outputs.semVer }} /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} /p:AssemblyFileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
       name: Pack
     - uses: actions/upload-artifact@v3
       with:
