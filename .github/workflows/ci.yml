@@ -88,7 +88,7 @@ jobs:
             "/d:sonar.coverage.exclusions=DavidSmth.Extensions.Http.BodyLogging.Benchmarks/**/*,DavidSmth.Extensions.Http.BodyLogging.Example/**/*"
         
         dotnet build --no-restore --no-incremental
-        dotnet-coverage collect --settings CodeCoverage.runsettings -f xml -o "coverage.xml" "dotnet test --no-build --logger 'trx;LogFileName=test-results.trx' --results-directory TestResults"
+        dotnet-coverage collect --settings CodeCoverage.runsettings -f xml -o coverage.xml dotnet test --no-build --logger "trx;LogFileName=test-results.trx" --results-directory TestResults
         
         .sonarscanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
         
