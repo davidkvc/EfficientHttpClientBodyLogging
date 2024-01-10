@@ -73,7 +73,7 @@ jobs:
         SONAR_HOST_URL: https://sonarcloud.io
       run: |
         echo $env:SONAR_HOST_URL
-        .sonarscanner\dotnet-sonarscanner begin /k:"dejvid-smth_EfficientHttpClientBodyLogging" /o:"dejvid-smth" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
+        .sonarscanner\dotnet-sonarscanner begin /k:"dejvid-smth_EfficientHttpClientBodyLogging" /o:"dejvid-smth" /d:sonar.token="${{ secrets.SONAR_TOKEN }}"  /d:sonar.host.url=https://sonarcloud.io
         dotnet build --no-restore
         .sonarscanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
