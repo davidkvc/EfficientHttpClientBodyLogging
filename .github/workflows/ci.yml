@@ -63,7 +63,7 @@ jobs:
       run: |
         New-Item -Path .\.sonarscanner -ItemType Directory
         dotnet tool update dotnet-sonarscanner --tool-path .\.sonarscanner
-        ls .\.sonarscanner
+        ls -al .\.sonarscanner
 
     - name: Restore dependencies
       run: dotnet restore
@@ -72,7 +72,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        ls .\.sonarscanner\
+        echo first
+        ls -al .
+        echo second
+        ls -al .\.sonarscanner\
         .\.sonarscanner\dotnet-sonarscanner begin /k:"dejvid-smth_EfficientHttpClientBodyLogging" /o:"dejvid-smth" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
         dotnet build --no-restore
         .\.sonarscanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
