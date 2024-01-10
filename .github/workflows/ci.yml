@@ -67,9 +67,10 @@ jobs:
         reporter: dotnet-trx
         fail-on-error: true
 
-    - run: |
-        $version = "${{ github.ref_name }}".TrimStart("v")
-        dotnet pack --configuration Release --output ${{ env.NuGetDirectory }} -p:Version=${{ steps.gitversion.outputs.semVer }} /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} /p:AssemblyFileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
+    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+        /p:Version=${{ steps.gitversion.outputs.semVer }}
+        /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }}
+        /p:AssemblyFileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
       name: Pack
     - uses: actions/upload-artifact@v3
       with:
