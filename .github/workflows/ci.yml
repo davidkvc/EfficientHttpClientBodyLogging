@@ -55,16 +55,15 @@ jobs:
       id: cache-sonar-scanner
       uses: actions/cache@v3
       with:
-        path: .\.sonar\scanner
+        path: .\.sonarscanner
         key: ${{ runner.os }}-sonar-scanner
         restore-keys: ${{ runner.os }}-sonar-scanner
     - name: Install SonarCloud scanner
       if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
       run: |
-        New-Item -Path .\.sonar\scanner -ItemType Directory
-        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-        ls .\.sonar
-        ls .\.sonar\scanner
+        New-Item -Path .\.sonarscanner -ItemType Directory
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonarscanner
+        ls .\.sonarscanner
 
     - name: Restore dependencies
       run: dotnet restore
@@ -73,10 +72,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        ls .\.sonar\scanner\
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"dejvid-smth_EfficientHttpClientBodyLogging" /o:"dejvid-smth" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
+        ls .\.sonarscanner\
+        .\.sonarscanner\dotnet-sonarscanner begin /k:"dejvid-smth_EfficientHttpClientBodyLogging" /o:"dejvid-smth" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
         dotnet build --no-restore
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        .\.sonarscanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
     - name: Test
       run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --results-directory "TestResults"
