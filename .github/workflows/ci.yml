@@ -87,7 +87,7 @@ jobs:
             /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
         
         dotnet build --no-restore --no-incremental
-        dotnet-coverage collect -f xml -o "coverage.xml" "dotnet test --no-build"
+        dotnet-coverage collect --settings CodeCoverage.runsettings -f xml -o "coverage.xml" "dotnet test --no-build"
         
         .sonarscanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
