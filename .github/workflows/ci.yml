@@ -84,7 +84,7 @@ jobs:
             /v:${{ steps.gitversion.outputs.semVer }} `
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
             /d:sonar.host.url=https://sonarcloud.io `
-            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml `
             /d:sonar.coverage.exclusions=DavidSmth.Extensions.Http.BodyLogging.Benchmarks/**/*,DavidSmth.Extensions.Http.BodyLogging.Example/**/*
         
         dotnet build --no-restore --no-incremental
