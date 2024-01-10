@@ -11,11 +11,11 @@
         -->
 
         <!-- Match assembly file paths: -->
-        <ModulePaths>
-            <Include>
-                <ModulePath>.*DavidSmth.Extensions.Http.BodyLogging.dll$</ModulePath>
-            </Include>
-        </ModulePaths
+		<ModulePaths>
+			<Include>
+				<ModulePath>.*DavidSmth.Extensions.Http.BodyLogging.dll$</ModulePath>
+			</Include>
+		</ModulePaths>
 		
         <EnableStaticManagedInstrumentation>True</EnableStaticManagedInstrumentation>
         <EnableDynamicManagedInstrumentation>True</EnableDynamicManagedInstrumentation>
