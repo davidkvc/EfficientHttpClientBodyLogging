@@ -43,9 +43,32 @@ public partial class LoggingTests
     }
 
     [Fact]
-    public async Task Too_big_request_and_response_body_is_trimmed_in_logs()
+    public async Task Too_big_request_body_is_trimmed_in_logs()
     {
-        //TODO: convert this into 2 tests to verify that both request and response logging respects it's specific limit
+        var tooBigContentSize = 11_000;
+
+        var logger = new TestLogger();
+
+        var tooBigRequestString = new string('a', tooBigContentSize);
+        var tooBigResponseString = new string('b', tooBigContentSize);
+
+        await Execute(logger,
+            tooBigRequestString,
+            tooBigResponseString,
+            opts =>
+            {
+                opts.RequestBodyLogLimit = 100;
+                opts.ResponseBodyLogLimit = 10_000;
+            });
+
+        logger.Messages.Should().BeEquivalentTo(
+            $"RequestBody: {new string('a', 100)}[Truncated by RequestBodyLogLimit]",
+            $"ResponseBody: {new string('b', 10_000)}[Truncated by ResponseBodyLogLimit]");
+    }
+
+    [Fact]
+    public async Task Too_big_response_body_is_trimmed_in_logs()
+    {
         var tooBigContentSize = 11_000;
 
         var logger = new TestLogger();
@@ -59,12 +82,12 @@ public partial class LoggingTests
             opts =>
             {
                 opts.RequestBodyLogLimit = 10_000;
-                opts.ResponseBodyLogLimit = 10_000;
+                opts.ResponseBodyLogLimit = 100;
             });
 
         logger.Messages.Should().BeEquivalentTo(
             $"RequestBody: {new string('a', 10_000)}[Truncated by RequestBodyLogLimit]",
-            $"ResponseBody: {new string('b', 10_000)}[Truncated by ResponseBodyLogLimit]");
+            $"ResponseBody: {new string('b', 100)}[Truncated by ResponseBodyLogLimit]");
     }
 
     [Fact]
