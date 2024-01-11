@@ -143,7 +143,43 @@ public partial class LoggingTests
         logger.Messages.Should().BeEquivalentTo($"RequestBody: request");
     }
 
-    //TODO: verify disabling certain content types (related to above tests)
+    [InlineData("text/plain")]
+    [InlineData("application/json")]
+    [InlineData("application/special+json")]
+    [InlineData("application/xml")]
+    [InlineData("application/special+xml")]
+    [Theory]
+    public async Task Requests_with_allowed_content_type_is_logged(string contentType)
+    {
+        var logger = new TestLogger();
+
+        await Execute(logger,
+            "request",
+            "response",
+            opts =>
+            {
+                opts.BodyContentTypeAllowlist.Clear();
+            },
+            contentType);
+
+        logger.Messages.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task Logging_can_be_disabled_by_removing_from_BodyContentTypeAllowlist()
+    {
+        var logger = new TestLogger();
+
+        await Execute(logger,
+            "request",
+            "response",
+            opts =>
+            {
+                opts.BodyContentTypeAllowlist.Clear();
+            });
+
+        logger.Messages.Should().BeEmpty();
+    }
 
     [Fact]
     public void Sync_requests_can_be_logged()
@@ -176,8 +212,6 @@ public partial class LoggingTests
         using var resp = client.Send(msg);
         resp.EnsureSuccessStatusCode();
     }
-
-    //TODO: verify more content types, not just JSON
     
     [Fact]
     public async Task Headers_are_preserved_when_logging_is_enabled()
@@ -208,7 +242,7 @@ public partial class LoggingTests
         resp.EnsureSuccessStatusCode();
     }
 
-    private async Task Execute(TestLogger logger, string requestBody, string responseBody, Action<HttpClientBodyLoggingOptions>? configureOptions = null)
+    private async Task Execute(TestLogger logger, string requestBody, string responseBody, Action<HttpClientBodyLoggingOptions>? configureOptions = null, string contentType = "text/plain")
     {
         var options = new HttpClientBodyLoggingOptions();
         configureOptions?.Invoke(options);
@@ -216,14 +250,14 @@ public partial class LoggingTests
         var mockHttp = new MockHttpMessageHandler();
         mockHttp.When(HttpMethod.Post, "http://logging-example/")
             .WithContent(requestBody) //we need to check the content to force mock handler to actually read it
-            .Respond("text/plain", responseBody);
+            .Respond(contentType, responseBody);
         using var client = new HttpClient(new HttpBodyLoggingHandler(Options.Create(options), logger)
         {
             InnerHandler = mockHttp,
         });
 
         using var msg = new HttpRequestMessage(HttpMethod.Post, "http://logging-example/");
-        msg.Content = new StringContent(requestBody, Encoding.UTF8, "text/plain");
+        msg.Content = new StringContent(requestBody, Encoding.UTF8, contentType);
 
         using var resp = await client.SendAsync(msg);
         resp.EnsureSuccessStatusCode();
