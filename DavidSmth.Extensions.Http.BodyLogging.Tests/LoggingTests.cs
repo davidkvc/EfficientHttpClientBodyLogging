@@ -148,18 +148,23 @@ public partial class LoggingTests
     [Fact]
     public void Sync_requests_can_be_logged()
     {
-        //TODO: MockHttpMessageHandler uses SendAsync handler even for sync requests
-        // - only response body is read using (sync)Send
         var logger = new TestLogger();
         var requestBody = "request";
-        var responseBody = "response";
 
         var options = new HttpClientBodyLoggingOptions();
 
-        var mockHttp = new MockHttpMessageHandler();
-        mockHttp.When(HttpMethod.Post, "http://logging-example/")
-            .WithContent(requestBody) //we need to check the content to force mock handler to actually read it
-            .Respond("text/plain", responseBody);
+        var mockHttp = new SimpleMockHttpMessageHandler
+        {
+            SyncHandler = req =>
+            {
+                req.ConsumeContent();
+
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("response", Encoding.UTF8, "text/plain")
+                };
+            }
+        };
         using var client = new HttpClient(new HttpBodyLoggingHandler(Options.Create(options), logger)
         {
             InnerHandler = mockHttp,
