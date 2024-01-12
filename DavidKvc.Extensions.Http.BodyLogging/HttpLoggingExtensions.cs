@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace DavidSmth.Extensions.Http.BodyLogging;
+namespace DavidKvc.Extensions.Http.BodyLogging;
 
 internal static partial class HttpLoggingExtensions
 {

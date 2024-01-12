@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DavidSmth.Extensions.Http.BodyLogging\DavidSmth.Extensions.Http.BodyLogging.csproj" />
+    <ProjectReference Include="..\DavidKvc.Extensions.Http.BodyLogging\DavidKvc.Extensions.Http.BodyLogging.csproj" />
   </ItemGroup>
 
 </Project>

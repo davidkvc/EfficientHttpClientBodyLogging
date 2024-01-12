@@ -14,13 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidSmth.Extensions.Http.BodyLogging", "DavidSmth.Extensions.Http.BodyLogging\DavidSmth.Extensions.Http.BodyLogging.csproj", "{57BC8385-C172-4E9A-B120-18BB72C6A990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidKvc.Extensions.Http.BodyLogging", "DavidKvc.Extensions.Http.BodyLogging\DavidKvc.Extensions.Http.BodyLogging.csproj", "{57BC8385-C172-4E9A-B120-18BB72C6A990}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidSmth.Extensions.Http.BodyLogging.Benchmarks", "DavidSmth.Extensions.Http.BodyLogging.Benchmarks\DavidSmth.Extensions.Http.BodyLogging.Benchmarks.csproj", "{C0F76C4B-7C5A-41E2-8A2C-5D0F095730A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidKvc.Extensions.Http.BodyLogging.Benchmarks", "DavidKvc.Extensions.Http.BodyLogging.Benchmarks\DavidKvc.Extensions.Http.BodyLogging.Benchmarks.csproj", "{C0F76C4B-7C5A-41E2-8A2C-5D0F095730A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidSmth.Extensions.Http.BodyLogging.Example", "DavidSmth.Extensions.Http.BodyLogging.Example\DavidSmth.Extensions.Http.BodyLogging.Example.csproj", "{D8C18280-C05F-4343-A9EC-A99CBB69E7EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidKvc.Extensions.Http.BodyLogging.Example", "DavidKvc.Extensions.Http.BodyLogging.Example\DavidKvc.Extensions.Http.BodyLogging.Example.csproj", "{D8C18280-C05F-4343-A9EC-A99CBB69E7EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidSmth.Extensions.Http.BodyLogging.Tests", "DavidSmth.Extensions.Http.BodyLogging.Tests\DavidSmth.Extensions.Http.BodyLogging.Tests.csproj", "{733F9FAE-653E-4247-B606-4179D397B758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DavidKvc.Extensions.Http.BodyLogging.Tests", "DavidKvc.Extensions.Http.BodyLogging.Tests\DavidKvc.Extensions.Http.BodyLogging.Tests.csproj", "{733F9FAE-653E-4247-B606-4179D397B758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

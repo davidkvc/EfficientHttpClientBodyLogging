@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DavidSmth.Extensions.Http.BodyLogging.Tests;
+namespace DavidKvc.Extensions.Http.BodyLogging.Tests;
 
 static internal class HttpRequestMessageExtensions
 {

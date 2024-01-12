@@ -1,7 +1,7 @@
-﻿using DavidSmth.Extensions.Http.BodyLogging;
+﻿using DavidKvc.Extensions.Http.BodyLogging;
 using Microsoft.Extensions.Logging;
 
-namespace DavidSmth.Extensions.Http.BodyLogging.Tests;
+namespace DavidKvc.Extensions.Http.BodyLogging.Tests;
 
 public partial class LoggingTests
 {

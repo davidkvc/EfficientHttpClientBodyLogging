@@ -1,5 +1,5 @@
 ﻿
-using DavidSmth.Extensions.Http.BodyLogging;
+using DavidKvc.Extensions.Http.BodyLogging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;

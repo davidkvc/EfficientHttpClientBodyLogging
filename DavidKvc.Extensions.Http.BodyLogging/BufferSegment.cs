@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace DavidSmth.Extensions.Http.BodyLogging;
+namespace DavidKvc.Extensions.Http.BodyLogging;
 
 internal sealed class BufferSegment : ReadOnlySequenceSegment<byte>
 {

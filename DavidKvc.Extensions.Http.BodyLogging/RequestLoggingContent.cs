@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 
-namespace DavidSmth.Extensions.Http.BodyLogging;
+namespace DavidKvc.Extensions.Http.BodyLogging;
 
 internal class RequestLoggingContent : HttpContent
 {

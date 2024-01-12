@@ -5,7 +5,7 @@ using RichardSzalay.MockHttp;
 using System.Net;
 using System.Text;
 
-namespace DavidSmth.Extensions.Http.BodyLogging.Tests;
+namespace DavidKvc.Extensions.Http.BodyLogging.Tests;
 
 public partial class LoggingTests
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DavidSmth.Extensions.Http.BodyLogging;
+namespace DavidKvc.Extensions.Http.BodyLogging;
 
 internal class BodyLoggingContext
 {
