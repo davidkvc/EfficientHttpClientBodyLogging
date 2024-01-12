@@ -12,7 +12,7 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<DebugType>embedded</DebugType>
 		<Authors>David Kovac</Authors>
-		<Description>TODO</Description>
+		<Description>Memory-efficient implementation of req/res body logging for C#'s HttpClient</Description>
 		<PackageTags>HttpClient, log, logging</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>Readme.md</PackageReadmeFile>
