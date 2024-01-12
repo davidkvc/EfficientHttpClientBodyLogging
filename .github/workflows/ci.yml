@@ -79,8 +79,8 @@ jobs:
         dotnet tool install --global dotnet-coverage
 
         .sonarscanner\dotnet-sonarscanner begin `
-            /k:"dejvid-smth_EfficientHttpClientBodyLogging" `
-            /o:"dejvid-smth" `
+            /k:"DavidKvc.Extensions.Http.BodyLogging" `
+            /o:"davidkvc" `
             /v:${{ steps.gitversion.outputs.semVer }} `
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
             /d:sonar.host.url=https://sonarcloud.io `
