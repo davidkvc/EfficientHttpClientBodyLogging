@@ -8,7 +8,7 @@
 		<IsPackable>true</IsPackable>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/dejvid-smth/EfficientHttpClientBodyLogging</RepositoryUrl>
+		<RepositoryUrl>https://github.com/davidkvc/EfficientHttpClientBodyLogging</RepositoryUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<DebugType>embedded</DebugType>
 		<Authors>David Kovac</Authors>
