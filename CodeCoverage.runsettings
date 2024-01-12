@@ -13,7 +13,7 @@
         <!-- Match assembly file paths: -->
 		<ModulePaths>
 			<Include>
-				<ModulePath>.*DavidSmth.Extensions.Http.BodyLogging.dll$</ModulePath>
+				<ModulePath>.*DavidKvc.Extensions.Http.BodyLogging.dll$</ModulePath>
 			</Include>
 		</ModulePaths>
 		
