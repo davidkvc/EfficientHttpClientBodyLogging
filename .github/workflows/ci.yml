@@ -79,7 +79,7 @@ jobs:
         dotnet tool install --global dotnet-coverage
 
         .sonarscanner\dotnet-sonarscanner begin `
-            /k:"DavidKvc.Extensions.Http.BodyLogging" `
+            /k:"davidkvc_EfficientHttpClientBodyLogging" `
             /o:"davidkvc" `
             /v:${{ steps.gitversion.outputs.semVer }} `
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
