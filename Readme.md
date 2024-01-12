@@ -1,8 +1,8 @@
 # Efficient Request/Response body logging with C#'s HttpClient
 
 [![NuGet Version](https://img.shields.io/nuget/v/DavidKvc.Extensions.Http.BodyLogging?style=flat-square&logo=nuget&label=DavidKvc.Extensions.Http.BodyLogging)](https://www.nuget.org/packages/DavidKvc.Extensions.Http.BodyLogging/)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dejvid-smth_EfficientHttpClientBodyLogging&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dejvid-smth_EfficientHttpClientBodyLogging)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=dejvid-smth_EfficientHttpClientBodyLogging&metric=coverage)](https://sonarcloud.io/summary/new_code?id=dejvid-smth_EfficientHttpClientBodyLogging)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=davidkvc_EfficientHttpClientBodyLogging&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=davidkvc_EfficientHttpClientBodyLogging)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=davidkvc_EfficientHttpClientBodyLogging&metric=coverage)](https://sonarcloud.io/summary/new_code?id=davidkvc_EfficientHttpClientBodyLogging)
 
 This is an example of **memory-efficient** implementation of req/res body logging for C#'s HttpClient.
 
