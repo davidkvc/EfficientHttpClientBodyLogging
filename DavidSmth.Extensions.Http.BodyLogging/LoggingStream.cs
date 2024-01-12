@@ -14,6 +14,7 @@ internal class LoggingStream : Stream, IBufferWriter<byte>
     private readonly int _limit;
     private readonly Content _content;
     private readonly Encoding _encoding;
+    private readonly BodyLoggingContext _loggingContext;
 
     private bool hasLogged = false;
     private int bytesBuffered = 0;
@@ -27,7 +28,8 @@ internal class LoggingStream : Stream, IBufferWriter<byte>
         Encoding encoding,
         int limit,
         Content content,
-        ILogger logger)
+        ILogger logger,
+        BodyLoggingContext loggingContext)
     {
         _target = target;
         _encoding = encoding;
@@ -35,6 +37,7 @@ internal class LoggingStream : Stream, IBufferWriter<byte>
 
         _limit = limit;
         _content = content;
+        _loggingContext = loggingContext;
     }
 
     public override bool CanSeek => false;
@@ -211,16 +214,18 @@ internal class LoggingStream : Stream, IBufferWriter<byte>
 
         hasLogged = true;
 
-        switch (_content)
+        using (_loggingContext.Use(_logger))
         {
-            case Content.RequestBody:
-                _logger.RequestBody(GetString(_encoding), GetStatus(false));
-                break;
-            case Content.ResponseBody:
-                _logger.ResponseBody(GetString(_encoding), GetStatus(false));
-                break;
+            switch (_content)
+            {
+                case Content.RequestBody:
+                    _logger.RequestBody(GetString(_encoding), GetStatus(false));
+                    break;
+                case Content.ResponseBody:
+                    _logger.ResponseBody(GetString(_encoding), GetStatus(false));
+                    break;
+            }
         }
-
     }
 
     public void Advance(int bytes)

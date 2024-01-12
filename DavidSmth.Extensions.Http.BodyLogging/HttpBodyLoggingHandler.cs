@@ -38,7 +38,7 @@ public class HttpBodyLoggingHandler : DelegatingHandler
 
         if (resp.Content != null)
         {
-            resp.Content = HttpContentWrapper.WrapResponseContentForLogging(resp.Content, _options, _logger);
+            resp.Content = HttpContentWrapper.WrapResponseContentForLogging(resp.Content, _options, _logger, new BodyLoggingContext(resp));
         }
 
         return resp;
@@ -56,7 +56,7 @@ public class HttpBodyLoggingHandler : DelegatingHandler
 
         if (resp.Content != null)
         {
-            resp.Content = HttpContentWrapper.WrapResponseContentForLogging(resp.Content, _options, _logger);
+            resp.Content = HttpContentWrapper.WrapResponseContentForLogging(resp.Content, _options, _logger, new BodyLoggingContext(resp));
         }
 
         return resp;

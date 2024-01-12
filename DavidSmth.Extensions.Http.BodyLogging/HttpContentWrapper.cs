@@ -43,7 +43,8 @@ internal static class HttpContentWrapper
         return content;
     }
 
-    public static HttpContent WrapResponseContentForLogging(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger)
+    public static HttpContent WrapResponseContentForLogging(HttpContent content, HttpClientBodyLoggingOptions loggingOptions, ILogger logger,
+        BodyLoggingContext bodyLoggingContext)
     {
         if (loggingOptions.ResponseBodyLogLimit == 0)
         {
@@ -67,7 +68,7 @@ internal static class HttpContentWrapper
             if (supportedContentType.MatchesMediaType(mediaType.MediaType))
             {
                 var encoding = mediaType.Encoding ?? supportedContentType.Encoding ?? Encoding.UTF8;
-                var loggingContent = new ResponseLoggingContent(content, encoding, loggingOptions.ResponseBodyLogLimit, logger);
+                var loggingContent = new ResponseLoggingContent(content, encoding, loggingOptions.ResponseBodyLogLimit, logger, bodyLoggingContext);
                 CopyHeaders(content, loggingContent);
                 return loggingContent;
             }

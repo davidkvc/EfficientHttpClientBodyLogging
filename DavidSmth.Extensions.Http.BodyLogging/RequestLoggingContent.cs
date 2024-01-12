@@ -22,7 +22,7 @@ internal class RequestLoggingContent : HttpContent
     protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context)
     {
         await using var loggingStream = new LoggingStream(stream, _encoding, _limit, 
-            LoggingStream.Content.RequestBody, _logger);
+            LoggingStream.Content.RequestBody, _logger, BodyLoggingContext.Empty);
 
         await _inner.CopyToAsync(loggingStream, context);
 
@@ -32,7 +32,7 @@ internal class RequestLoggingContent : HttpContent
     protected override void SerializeToStream(Stream stream, TransportContext? context, CancellationToken cancellationToken)
     {
         using var loggingStream = new LoggingStream(stream, _encoding, _limit,
-            LoggingStream.Content.RequestBody, _logger);
+            LoggingStream.Content.RequestBody, _logger, BodyLoggingContext.Empty);
 
         _inner.CopyTo(loggingStream, context, cancellationToken);
 

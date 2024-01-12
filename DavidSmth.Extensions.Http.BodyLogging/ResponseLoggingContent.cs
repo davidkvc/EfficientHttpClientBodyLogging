@@ -9,30 +9,29 @@ using System.Threading.Tasks;
 
 namespace DavidSmth.Extensions.Http.BodyLogging;
 
-//TODO: response body is going to be logged once response body is read which
-//might happen later than request processing itself. So the log might not contain
-//info about the request. We should make sure to add basic request information
-//like method, path, ... to the log
 internal class ResponseLoggingContent : HttpContent
 {
     private readonly HttpContent _inner;
     private readonly Encoding _encoding;
     private readonly int _limit;
     private readonly ILogger _logger;
+    private readonly BodyLoggingContext _bodyLoggingContext;
 
-    public ResponseLoggingContent(HttpContent inner, Encoding encoding, int limit, ILogger logger)
+    public ResponseLoggingContent(HttpContent inner, Encoding encoding, int limit, ILogger logger,
+        BodyLoggingContext bodyLoggingContext)
     {
         _inner = inner;
         _encoding = encoding;
         _limit = limit;
         _logger = logger;
+        _bodyLoggingContext = bodyLoggingContext;
     }
 
     protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context)
     {
         using var contentStream = await _inner.ReadAsStreamAsync();
         using var loggingStream = new LoggingStream(contentStream, _encoding, _limit,
-            LoggingStream.Content.ResponseBody, _logger);
+            LoggingStream.Content.ResponseBody, _logger, _bodyLoggingContext);
 
         await loggingStream.CopyToAsync(stream);
 
@@ -43,7 +42,7 @@ internal class ResponseLoggingContent : HttpContent
     {
         using var contentStream = _inner.ReadAsStream();
         using var loggingStream = new LoggingStream(contentStream, _encoding, _limit,
-            LoggingStream.Content.ResponseBody, _logger);
+            LoggingStream.Content.ResponseBody, _logger, _bodyLoggingContext);
 
         loggingStream.CopyTo(stream);
 
