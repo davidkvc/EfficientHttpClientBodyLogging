@@ -228,17 +228,16 @@ internal class LoggingStream : Stream, IBufferWriter<byte>
         }
     }
 
-    public void Advance(int bytes)
+    public void Advance(int count)
     {
-        if ((uint)bytes > (uint)tailMemory.Length)
+        if ((uint)count > (uint)tailMemory.Length)
         {
-            throw new ArgumentOutOfRangeException(nameof(bytes));
-            //ThrowArgumentOutOfRangeException(nameof(bytes));
+            throw new ArgumentOutOfRangeException(nameof(count));
         }
 
-        tailBytesBuffered += bytes;
-        bytesBuffered += bytes;
-        tailMemory = tailMemory.Slice(bytes);
+        tailBytesBuffered += count;
+        bytesBuffered += count;
+        tailMemory = tailMemory.Slice(count);
     }
 
     public Memory<byte> GetMemory(int sizeHint = 0)

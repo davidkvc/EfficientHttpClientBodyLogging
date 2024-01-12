@@ -40,7 +40,7 @@ internal class ResponseLoggingContent : HttpContent
 
     protected override void SerializeToStream(Stream stream, TransportContext? context, CancellationToken cancellationToken)
     {
-        using var contentStream = _inner.ReadAsStream();
+        using var contentStream = _inner.ReadAsStream(cancellationToken);
         using var loggingStream = new LoggingStream(contentStream, _encoding, _limit,
             LoggingStream.Content.ResponseBody, _logger, _bodyLoggingContext);
 
