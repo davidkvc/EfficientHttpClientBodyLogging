@@ -22,31 +22,10 @@ using var sp = services.BuildServiceProvider();
 
 var client = sp.GetRequiredService<IHttpClientFactory>().CreateClient("example");
 
-using var msg = new HttpRequestMessage(HttpMethod.Post, "https://httpbin.org/post");
-
-var data = new string[8];
-for (int i = 0; i < data.Length; i++)
+using var resp = await client.PostAsJsonAsync("https://httpbin.org/post", new
 {
-    data[i] = new string('a', 4000);
-}
-
-var originalRequestContent = JsonContent.Create(new
-{
-    name = "test",
-    count = 66,
-    data = data,
+    data = "hello world"
 });
-msg.Content = originalRequestContent;
-
-//msg.Content = HttpContentWrapper.WrapRequestContentForLogging(originalRequestContent, loggingOptions, logger);
-////var mpc = new MultipartFormDataContent();
-////using var cv = File.OpenRead("C:\\Users\\david\\Desktop\\david_kovac_cv.pdf");
-////using var cvContent = new StreamContent(cv);
-////cvContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/pdf");
-////mpc.Add(cvContent, "file", "file");
-////msg.Content = WrapRequestContentForLogging(mpc, loggingOptions, logger);
-
-using var resp = await client.SendAsync(msg);
 
 resp.EnsureSuccessStatusCode();
 
